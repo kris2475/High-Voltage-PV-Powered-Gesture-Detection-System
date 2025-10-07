@@ -212,14 +212,3 @@ This system demonstrates a **high-voltage, energy-harvesting PV sensor** capable
 - Incorporating **aggressive MCU power management** (deep sleep with PIR wake) and **TinyML model deployment**, ensuring the system remains both practical and scalable.
 
 
-## 📌 Summary
-This system demonstrates a **high-voltage, energy-harvesting PV sensor** capable of:  
-- Maintaining **stable high-voltage operation** via Li-Ion supercapacitor storage.  
-- Extracting and amplifying **minute AC fluctuations** for shadow gesture detection.  
-- Operating entirely off **harvested solar energy** with ultra-low-power circuitry.  
-- Leveraging theoretical insights from **Li-ion charge dynamics, PV load-line analysis, and buck converter input impedance** for robust design.  
-- Exploring a novel **semi-transparent coffee table application**, combining **gesture interactivity** with **self-powered autonomy** and future potential for **under-panel displays**.
-
-
- 
-
