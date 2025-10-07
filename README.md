@@ -18,7 +18,7 @@ This project builds on that foundation but introduces several unique innovations
 - **Integration Potential with Displays**  
   Because the panel is semi-transparent, it can in principle be mounted above **embedded displays or lighting**, enabling rich **interactive, visual feedback surfaces** powered entirely by ambient light.
 
-### Initial PV Panel Characterization
+### Initial PV Panel Characterisation
 
 Initial measurements with a multimeter under **660 lux mixed laboratory lighting** (LED plus filtered daylight through a modern south-facing window) showed that the PV panel, connected to the LTC3638 converter, produced:
 
@@ -39,7 +39,7 @@ The system measures minute **AC-coupled voltage fluctuations (ΔV<sub>PV</sub>)*
 
 ### Core Objectives
 - **Energy Harvesting**: Efficiently transfer power from the PV panel (≈70 V DC) to a 3.35 V system bus and storage element.  
-- **Stable Storage**: Select an energy storage component that maximizes energy density without compromising the PV module’s high DC operating point.  
+- **Stable Storage**: Select an energy storage component that maximises energy density without compromising the PV module’s high DC operating point.  
 - **Signal Conditioning**: Isolate and amplify the small AC signal (±150 mV) riding on the high DC bus for accurate ADC measurement.  
 - **Gesture Detection**: Use the amplified ΔV<sub>PV</sub> signal for robust, low-latency shadow gesture detection.  
 
@@ -58,7 +58,7 @@ An experimental comparison between **EDLC** and **Li-Ion supercapacitors** showe
 
 #### Critical Finding: MPPT Instability
 - **EDLC Failure**: Large capacitance + low ESR created a demanding load. During charge-up, the MPPT control loop in the DC-DC converter became unstable, collapsing PV voltage to ≈4.1 V (insufficient for operation).  
-- **Li-Ion Success**: Higher ESR and complex electrochemical behavior presented a smoother load, allowing stable MPPT operation at 69–73 V.  
+- **Li-Ion Success**: Higher ESR and complex electrochemical behaviour presented a smoother load, allowing stable MPPT operation at 69–73 V.  
 
 Selected component: **30 F Li-Ion Supercapacitor (e.g., Vinatech VEL08203R8306G)**.
 
@@ -74,7 +74,7 @@ R_t = R_o / D^2
 
 - **Input Capacitance Requirement**:  
   - ≥75 V capacitor placed at PV terminals.  
-  - Acts as an energy buffer, smoothing discontinuous switching current and stabilizing MPPT sensing.  
+  - Acts as an energy buffer, smoothing discontinuous switching current and stabilising MPPT sensing.  
 
 ---
 
@@ -87,7 +87,7 @@ The **30 F Li-Ion supercapacitor** is connected at the **output of the buck co
    - R<sub>load</sub> limits the inrush current from the buck converter, preventing **voltage collapse** or stress on the converter’s switching elements.
 
 2. **Maintains MPPT Stability**  
-   - Excessive instantaneous current can destabilize the Maximum Power Point Tracking (MPPT) loop.  
+   - Excessive instantaneous current can destabilise the Maximum Power Point Tracking (MPPT) loop.  
    - The series resistor ensures the converter output rises smoothly, keeping the PV panel near its MPP.
 
 3. **Smooths Voltage Transients**  
@@ -109,7 +109,7 @@ I_charge = (V_out_converter - V_SC) / R_load
 ### 3.1 Signal Characteristics and Constraints
 - **Input Signal**: ΔV<sub>PV</sub> (gesture shadow) = ±150 mV (≈300 mV p-p).  
 - **DC Offset**: Rides on ≈70 V bias.  
-- **ADC Target**: Output centered around V<sub>CC</sub>/2 (≈1.675 V), Arduino Nano 33 BLE Sense (V<sub>CC</sub> ≈ 3.35 V).  
+- **ADC Target**: Output centred around V<sub>CC</sub>/2 (≈1.675 V), Arduino Nano 33 BLE Sense (V<sub>CC</sub> ≈ 3.35 V).  
 
 ---
 
@@ -144,7 +144,7 @@ f_c ≈ 0.0318 Hz
 
 ---
 
-### 3.4 Optimized Trimpot Configuration
+### 3.4 Optimised Trimpot Configuration
 - **AC Gain (A_v):**
 
 A_v = -R_f / R_in  
@@ -157,7 +157,7 @@ Input: 300 mV p-p → Output: 0.9 V p-p.
 V_REF = V_CC * (R_B / (R_A + R_B))  
 V_REF = V_CC / 2 ≈ 1.675 V  
 
-✅ Ensures amplified signal is **centered and scaled** for ADC conversion.  
+✅ Ensures amplified signal is **centred and scaled** for ADC conversion.  
 
 ---
 
@@ -181,7 +181,7 @@ V = I × R_L
 
 - The Maximum Power Point (MPP) occurs near the “knee” of the I–V curve where:  
 
-P = V × I is maximized.  
+P = V × I is maximised.  
 
 - If R<sub>L</sub> is too low → panel is current-limited (low voltage, high current).  
 - If R<sub>L</sub> is too high → panel is voltage-limited (high voltage, low current).  
@@ -216,25 +216,14 @@ The Arduino Nano 33 BLE Sense is based on the **nRF52840 SoC**, which offers mul
 - **Deep Sleep / System OFF Mode**:  
   ~1–3 µA typical, with wake-up sources such as external interrupts (e.g., PIR sensor).  
 
-In this project, the Nano 33 BLE Sense is intended to remain in **deep sleep** most of the time. It will be woken by a **PIR motion detector** (or another low-power external trigger) just prior to gesture sensing. Once the gesture capture is complete and data is logged, the MCU returns to deep sleep, minimizing average energy consumption.
+In this project, the Nano 33 BLE Sense is intended to remain in **deep sleep** most of the time. It will be woken by a **PIR motion detector** (or another low-power external trigger) just prior to gesture sensing. Once the gesture capture is complete and data is logged, the MCU returns to deep sleep, minimising average energy consumption.
 
 ### TinyML Model Deployment
 Any trained **gesture recognition model** (e.g., Random Forest, 1D CNN, or LSTM) is designed to be compact enough for **TinyML deployment** on the Nano 33 BLE Sense.  
 
 - **TensorFlow Lite for Microcontrollers (TFLM)** or similar lightweight inference engines can run efficiently within the device’s memory (1 MB Flash, 256 kB RAM).  
-- The expected model size for classifying simple gestures (≈10–20 repetitions per gesture) is **tens of kilobytes**, easily fitting within the available resources.  
-- This ensures **on-device inference** is possible, eliminating the need for cloud connectivity while preserving the **self-powered, autonomous design philosophy**.
+- The expected model size for classifying simple gestures (≈10–20 repetitions per gesture) is **tens of kilobytes**, easily fitting within
 
----
-
-## 📌 Summary
-This system demonstrates a **high-voltage, energy-harvesting PV sensor** capable of:  
-- Maintaining **stable high-voltage operation** via Li-Ion supercapacitor storage.  
-- Extracting and amplifying **minute AC fluctuations** for shadow gesture detection.  
-- Operating entirely off **harvested solar energy** with ultra-low-power circuitry.  
-- Leveraging theoretical insights from **Li-ion charge dynamics, PV load-line analysis, and buck converter input impedance** for robust design.  
-- Exploring a novel **semi-transparent coffee table application**, combining **gesture interactivity** with **self-powered autonomy** and future potential for **under-panel displays**.  
-- Incorporating **aggressive MCU power management** (deep sleep with PIR wake) and **TinyML model deployment**, ensuring the system remains both practical and scalable.
 
 
 
