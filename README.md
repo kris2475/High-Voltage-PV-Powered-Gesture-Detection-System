@@ -1,6 +1,29 @@
 # High-Voltage PV-Powered Gesture Detection System
 
+## 0. Introduction
+
+Gesture recognition using photovoltaic (PV) panels has emerged as a promising approach for **self-powered human–machine interaction**. Prior work (e.g., *A Photovoltaic Light Sensor-Based Self-Powered Real-Time Hover Gesture Recognition System for Smart Home Control*, Almania et al., *Electronics*, 14(18), 3576) has demonstrated that PV modules can serve not only as energy harvesters but also as effective light sensors, enabling **shadow-based gesture detection** without additional sensing hardware.
+
+This project builds on that foundation but introduces several unique innovations:
+
+- **Extremely Large Semi-Transparent PV Panel**  
+  Instead of a small solar cell, the system employs a **50% semitransparent PV module** that doubles as both the energy harvester and gesture-sensing surface. Its large form factor enables robust shadow detection over a wide interaction area.
+
+- **Novel Coffee Table Application**  
+  The PV panel is integrated into a **coffee table form factor**, making the entire surface interactive. Users can perform gestures directly above the table, which are detected in real time from the panel’s minute voltage fluctuations.
+
+- **Simultaneous Energy Harvesting and Gesture Detection**  
+  Unlike conventional PV-based gesture systems, this design not only senses shadows but also **charges a Li-ion supercapacitor** from the same panel. This ensures that the system remains **fully self-powered**, storing enough energy for continuous operation.
+
+- **Integration Potential with Displays**  
+  Because the panel is semi-transparent, it can in principle be mounted above **embedded displays or lighting**, enabling rich **interactive, visual feedback surfaces** powered entirely by ambient light.
+
+Together, these innovations position the system as a step toward **interactive, energy-autonomous smart furniture**: surfaces that are at once **functional, aesthetic, and responsive**, with no external wiring or power supply required.
+
+---
+
 ## 1. Project Overview
+
 This project implements an **ultra-low power, energy-harvesting system** designed to detect shadow gestures or subtle environmental changes using a standard **Photovoltaic (PV) panel** as its primary sensor.  
 
 The system measures minute **AC-coupled voltage fluctuations (ΔV<sub>PV</sub>)** present on the PV module’s output, while simultaneously harvesting energy to operate the **Arduino Nano 33 BLE Sense** microcontroller and charge the primary energy storage element.
@@ -155,5 +178,7 @@ This system demonstrates a **high-voltage, energy-harvesting PV sensor** capable
 - Extracting and amplifying **minute AC fluctuations** for shadow gesture detection.  
 - Operating entirely off **harvested solar energy** with ultra-low-power circuitry.  
 - Leveraging theoretical insights from **Li-ion charge dynamics, PV load-line analysis, and buck converter input impedance** for robust design.  
+- Exploring a novel **semi-transparent coffee table application**, combining **gesture interactivity** with **self-powered autonomy** and future potential for **under-panel displays**.
+
  
 
