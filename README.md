@@ -1,6 +1,6 @@
 # High-Voltage PV-Powered Gesture Detection System
 
-## 0. Introduction
+## Introduction
 
 Gesture recognition using photovoltaic (PV) panels has emerged as a promising approach for **self-powered human–machine interaction**. Prior work (e.g., *A Photovoltaic Light Sensor-Based Self-Powered Real-Time Hover Gesture Recognition System for Smart Home Control*, Almania et al., *Electronics*, 14(18), 3576) has demonstrated that PV modules can serve not only as energy harvesters but also as effective light sensors, enabling **shadow-based gesture detection** without additional sensing hardware.
 
