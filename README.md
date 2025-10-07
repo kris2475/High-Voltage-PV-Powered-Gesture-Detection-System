@@ -179,6 +179,39 @@ Implications:
 
 ---
 
+
+## 5. Microcontroller Power Management & ML/DL Feasibility
+
+### Arduino Nano 33 BLE Sense Current Consumption
+The Arduino Nano 33 BLE Sense is based on the **nRF52840 SoC**, which offers multiple low-power operating modes:
+
+- **Active Mode** (CPU running, peripherals active):  
+  ~4–6 mA typical at 3.3 V during sampling and logging.  
+
+- **Deep Sleep / System OFF Mode**:  
+  ~1–3 µA typical, with wake-up sources such as external interrupts (e.g., PIR sensor).  
+
+In this project, the Nano 33 BLE Sense is intended to remain in **deep sleep** most of the time. It will be woken by a **PIR motion detector** (or another low-power external trigger) just prior to gesture sensing. Once the gesture capture is complete and data is logged, the MCU returns to deep sleep, minimizing average energy consumption.
+
+### TinyML Model Deployment
+Any trained **gesture recognition model** (e.g., Random Forest, 1D CNN, or LSTM) is designed to be compact enough for **TinyML deployment** on the Nano 33 BLE Sense.  
+
+- **TensorFlow Lite for Microcontrollers (TFLM)** or similar lightweight inference engines can run efficiently within the device’s memory (1 MB Flash, 256 kB RAM).  
+- The expected model size for classifying simple gestures (≈10–20 repetitions per gesture) is **tens of kilobytes**, easily fitting within the available resources.  
+- This ensures **on-device inference** is possible, eliminating the need for cloud connectivity while preserving the **self-powered, autonomous design philosophy**.
+
+---
+
+## 📌 Summary
+This system demonstrates a **high-voltage, energy-harvesting PV sensor** capable of:  
+- Maintaining **stable high-voltage operation** via Li-Ion supercapacitor storage.  
+- Extracting and amplifying **minute AC fluctuations** for shadow gesture detection.  
+- Operating entirely off **harvested solar energy** with ultra-low-power circuitry.  
+- Leveraging theoretical insights from **Li-ion charge dynamics, PV load-line analysis, and buck converter input impedance** for robust design.  
+- Exploring a novel **semi-transparent coffee table application**, combining **gesture interactivity** with **self-powered autonomy** and future potential for **under-panel displays**.  
+- Incorporating **aggressive MCU power management** (deep sleep with PIR wake) and **TinyML model deployment**, ensuring the system remains both practical and scalable.
+
+
 ## 📌 Summary
 This system demonstrates a **high-voltage, energy-harvesting PV sensor** capable of:  
 - Maintaining **stable high-voltage operation** via Li-Ion supercapacitor storage.  
