@@ -103,9 +103,57 @@ V_REF = V_CC / 2 ≈ 1.675 V
 
 ---
 
+## 4. Theoretical Considerations
+
+### 4.1 Li-Ion Supercapacitor Charge/Discharge Cycle
+- Li-ion hybrid capacitors differ from EDLCs in that they use **battery-like intercalation** on one electrode.  
+- **Charging phase**: Voltage rises relatively linearly until ≈3.8 V, with a mild plateau due to faradaic reactions.  
+- **Discharging phase**: Provides a more gradual voltage decline, offering **higher usable energy density** than EDLCs.  
+- **Cycle Stability**: Operates between 2.2–3.8 V; exceeding these limits reduces cycle life.  
+- Advantage in this system: naturally higher ESR softens inrush current, preventing PV voltage collapse.  
+
+---
+
+### 4.2 PV Panel Operating Point & Resistive Load Line
+The operating point of a PV module is determined by the intersection of its **I–V characteristic curve** and the **load line**:  
+
+- Load resistance R<sub>L</sub> defines a straight line on the I–V plane:  
+
+V = I × R_L  
+
+- The Maximum Power Point (MPP) occurs near the “knee” of the I–V curve where:  
+
+P = V × I is maximized.  
+
+- If R<sub>L</sub> is too low → panel is current-limited (low voltage, high current).  
+- If R<sub>L</sub> is too high → panel is voltage-limited (high voltage, low current).  
+- A properly tuned MPPT ensures the **reflected input impedance of the converter** matches the PV source impedance at MPP.  
+
+(Reference: Willoughby & Omotosho, *A Simple Resistive Load I–V Curve Tracer for Module Characterization*).  
+
+---
+
+### 4.3 Input Impedance of a Buck Converter
+For a buck converter operating in continuous conduction:  
+
+R_in ≈ (D² × R_load)  
+
+where:  
+- D = duty cycle,  
+- R_load = effective resistance seen at the output.  
+
+Implications:  
+- As D increases, R_in decreases quadratically.  
+- MPPT controllers adjust D to reflect the correct R_in onto the PV panel so it operates at MPP.  
+- If the converter + storage element demand too much current (i.e., R_in too small), the PV voltage collapses — which explains the instability seen with EDLCs.  
+
+---
+
 ## 📌 Summary
 This system demonstrates a **high-voltage, energy-harvesting PV sensor** capable of:  
 - Maintaining **stable high-voltage operation** via Li-Ion supercapacitor storage.  
 - Extracting and amplifying **minute AC fluctuations** for shadow gesture detection.  
 - Operating entirely off **harvested solar energy** with ultra-low-power circuitry.  
+- Leveraging theoretical insights from **Li-ion charge dynamics, PV load-line analysis, and buck converter input impedance** for robust design.  
+ 
 
