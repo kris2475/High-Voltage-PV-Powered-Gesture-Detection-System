@@ -56,11 +56,18 @@ An experimental comparison between **EDLC** and **Li-Ion supercapacitors** showe
 | 50 F EDLC | 50 F | Collapsed to ≈4.143 V | ≈120 J | ❌ Rejected |
 | 30 F Li-Ion | 30 F | Maintained 69–73 V | ≈146 J | ✅ Selected |
 
+
 #### Critical Finding: MPPT Instability
-- **EDLC Failure**: Large capacitance + low ESR created a demanding load. During charge-up, the MPPT control loop in the DC-DC converter became unstable, collapsing PV voltage to ≈4.1 V (insufficient for operation).  
-- **Li-Ion Success**: Higher ESR and complex electrochemical behaviour presented a smoother load, allowing stable MPPT operation at 69–73 V.  
+- **EDLC Failure**: Large capacitance + low ESR created a demanding load. The EDLC initially charged normally, but once it reached full capacity the MPPT control loop in the DC-DC converter became unstable. At that point, the converter had no remaining “headroom” to modulate current into the capacitor. This mismatch between the converter’s impedance reflection and the PV source impedance forced the operating point down the I–V curve into a low-voltage, high-current region. As a result, the PV voltage collapsed to ≈4.1 V, far below the required ≈70 V, making the system unusable.  
+
+- **Why this happens**: EDLCs exhibit very low ESR, so once charged, they demand an abrupt stop in charging current. Unlike a resistive load, they do not naturally dissipate energy or provide a gradual taper of current. The converter, still attempting to regulate at the MPP, overshoots and oscillates because there is no dissipative pathway to stabilise the PV panel’s operating point. This is exacerbated by the fact that once the EDLC reaches its rated voltage, its impedance spikes almost instantaneously. The result is a sudden change in the load-line, which shifts the PV panel into a region of operation where voltage collapses and current surges. In short: the EDLC’s ideal capacitor behaviour provides *too perfect* a sink during charging, followed by an abrupt discontinuity at full charge, which paradoxically destabilises the energy harvesting loop.  
+
+- **Additional perspective**: In a practical system, energy harvesters and MPPT controllers require a load that behaves somewhat resistively across the charge cycle. Without that, the feedback loop has nothing to “push against” when the storage device approaches full capacity. EDLCs deny the system that buffer, forcing the converter to oscillate or collapse.  
+
+- **Li-Ion Success**: Higher ESR and complex electrochemical behaviour presented a smoother, more resistive-like load profile across the entire charge cycle. The Li-ion hybrid capacitor tapers current more gracefully, avoiding a sudden discontinuity when approaching full voltage. This allowed stable MPPT operation to be maintained at 69–73 V, even when the capacitor was near full charge.  
 
 Selected component: **30 F Li-Ion Supercapacitor (e.g., Vinatech VEL08203R8306G)**.
+
 
 ---
 
