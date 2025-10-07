@@ -21,11 +21,11 @@ This project builds on that foundation but introduces several unique innovations
 Initial measurements with a multimeter under 660 lux mixed laboratory lighting (LED plus filtered daylight through a modern south-facing window) showed that the PV panel, connected to the LTC3638 converter, produced:
 
 $$
-V_{out} = 3.35 \,\text{V}
+V_{out} = 3.35 V
 $$
 
 $$
-I_{sc} = 3.89 \,\text{mA}
+I_{sc} = 3.89 mA
 $$
 
 These readings confirm that the panel can reliably generate sufficient voltage and current to power the Arduino Nano 33 BLE Sense and provide a measurable AC signal for gesture detection.
@@ -142,7 +142,7 @@ Configured as AC-Coupled Inverting Amplifier:
 ---
 
 ### 3.3 DC Blocking Capacitor & Frequency Response
-$C_{block} = 10 \,\mu\text{F}$ → forms high-pass filter with $R_{in}$.
+$C_{block} = 10 μF$ → forms high-pass filter with $R_{in}$.
 
 Cutoff Frequency:
 
@@ -150,10 +150,10 @@ $$
 f_c = \frac{1}{2 \pi R_{in} C_{block}}
 $$
 
-Using $R_{in} = 500 \,\text{kΩ}$ and $C_{block} = 10 \,\mu\text{F}$:
+Using $R_{in} = 500 kΩ$ and $C_{block} = 10 μF$:
 
 $$
-f_c \approx 0.0318 \,\text{Hz}
+f_c \approx 0.0318 Hz
 $$
 
 **Impact:**  
@@ -170,7 +170,7 @@ A_v = -\frac{R_f}{R_{in}}
 $$
 
 $$
-A_v = -\frac{1.5 \,\text{MΩ}}{500 \,\text{kΩ}} = -3
+A_v = -\frac{1.5 MΩ}{500 kΩ} = -3
 $$
 
 Input: 300 mV p-p → Output: 0.9 V p-p.  
@@ -182,7 +182,7 @@ V_{REF} = V_{CC} \cdot \frac{R_A}{R_A + R_B}
 $$
 
 $$
-V_{REF} \approx \frac{2}{3} V_{CC} \approx 1.675 \,\text{V}
+V_{REF} \approx 1.675 V
 $$
 
 ✅ Ensures amplified signal is centred and scaled for ADC conversion.  
@@ -245,11 +245,8 @@ where:
 ### Arduino Nano 33 BLE Sense Current Consumption
 The Arduino Nano 33 BLE Sense is based on the nRF52840 SoC, which offers multiple low-power operating modes:
 
-- **Active Mode (CPU running, peripherals active):**  
-  ∼4–6 mA typical at 3.3 V during sampling and logging.  
-
-- **Deep Sleep / System OFF Mode:**  
-  ∼1–3 μA typical, with wake-up sources such as external interrupts (e.g., PIR sensor).  
+- **Active Mode (CPU running, peripherals active):** ∼4–6 mA typical at 3.3 V during sampling and logging.  
+- **Deep Sleep / System OFF Mode:** ∼1–3 μA typical, with wake-up sources such as external interrupts (e.g., PIR sensor).  
 
 In this project, the Nano 33 BLE Sense is intended to remain in deep sleep most of the time. It will be woken by a PIR motion detector (or another low-power external trigger) just prior to gesture sensing. Once the gesture capture is complete and data is logged, the MCU returns to deep sleep, minimising average energy consumption.  
 
@@ -258,7 +255,7 @@ In this project, the Nano 33 BLE Sense is intended to remain in deep sleep most 
 ### TinyML Model Deployment
 Any trained gesture recognition model (e.g., Random Forest, 1D CNN, or LSTM) is designed to be compact enough for TinyML deployment on the Nano 33 BLE Sense.
 
-TensorFlow Lite for Microcontrollers (TFLM) or similar lightweight inference engines can run efficiently within the device’s memory (1 MB Flash,256 kB RAM).
+TensorFlow Lite for Microcontrollers (TFLM) or similar lightweight inference engines can run efficiently within the device’s memory (1 MB Flash, 256 kB RAM).
 
 The expected model size for classifying simple gestures (≈10–20 repetitions per gesture) is tens of kilobytes, easily fitting within the available resources.
 
