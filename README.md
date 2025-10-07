@@ -36,10 +36,9 @@ Selected component: **30 F Li-Ion Supercapacitor (e.g., Vinatech VEL08203R8306G)
 - **Converter**: LTC3638 Buck-Boost Converter.  
 - **Function**: Tracks the PV module’s **Maximum Power Point (MPP)** by dynamically adjusting input impedance (R<sub>t</sub>) via duty cycle (D).  
 
-**Impedance Reflection (Buck Reference):**  
-\[
-R_t = \frac{R_o}{D^2}
-\]
+**Impedance Reflection (Buck Reference):**
+
+R_t = R_o / D^2
 
 - **Input Capacitance Requirement**:  
   - ≥75 V capacitor placed at PV terminals.  
@@ -72,10 +71,14 @@ Configured as **AC-Coupled Inverting Amplifier**:
 
 ### 3.3 DC Blocking Capacitor & Frequency Response
 - **C<sub>block</sub> = 10 µF** → forms high-pass filter with R<sub>in</sub>.  
-- **Cutoff Frequency**:  
-\[
-f_c = \frac{1}{2 \pi R_{in} C_{block}} \approx 0.0318 \, \text{Hz}
-\]
+
+**Cutoff Frequency:**
+
+f_c = 1 / (2π * R_in * C_block)
+
+Using R<sub>in</sub> = 500 kΩ and C<sub>block</sub> = 10 µF:
+
+f_c ≈ 0.0318 Hz
 
 - **Impact**:  
   - Attenuates long-term DC drifts (temperature, slow irradiance).  
@@ -84,13 +87,17 @@ f_c = \frac{1}{2 \pi R_{in} C_{block}} \approx 0.0318 \, \text{Hz}
 ---
 
 ### 3.4 Optimized Trimpot Configuration
-- **AC Gain (A<sub>v</sub>)**:  
-  - R<sub>f</sub> = 1.5 MΩ, R<sub>in</sub> = 500 kΩ → A<sub>v</sub> = −3.  
-  - Input: 300 mV p-p → Output: 0.9 V p-p.  
+- **AC Gain (A_v):**
 
-- **DC Offset (V<sub>REF</sub>)**:  
-  - R<sub>A</sub> = 1.0 MΩ, R<sub>B</sub> = 1.0 MΩ.  
-  - V<sub>REF</sub> = V<sub>CC</sub>/2 = 1.675 V.  
+A_v = -R_f / R_in  
+A_v = -1.5 MΩ / 500 kΩ = -3  
+
+Input: 300 mV p-p → Output: 0.9 V p-p.  
+
+- **DC Offset (V_REF):**
+
+V_REF = V_CC * (R_B / (R_A + R_B))  
+V_REF = V_CC / 2 ≈ 1.675 V  
 
 ✅ Ensures amplified signal is **centered and scaled** for ADC conversion.  
 
@@ -101,3 +108,4 @@ This system demonstrates a **high-voltage, energy-harvesting PV sensor** capable
 - Maintaining **stable high-voltage operation** via Li-Ion supercapacitor storage.  
 - Extracting and amplifying **minute AC fluctuations** for shadow gesture detection.  
 - Operating entirely off **harvested solar energy** with ultra-low-power circuitry.  
+
