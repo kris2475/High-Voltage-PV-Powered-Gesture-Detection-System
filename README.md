@@ -18,6 +18,15 @@ This project builds on that foundation but introduces several unique innovations
 - **Integration Potential with Displays**  
   Because the panel is semi-transparent, it can in principle be mounted above **embedded displays or lighting**, enabling rich **interactive, visual feedback surfaces** powered entirely by ambient light.
 
+### Initial PV Panel Characterization
+
+Initial measurements with a multimeter under **660 lux mixed laboratory lighting** (LED plus filtered daylight through a modern south-facing window) showed that the PV panel, connected to the LTC3638 converter, produced:
+
+- **Vout = 3.35 V**  
+- **Isc = 3.89 mA**  
+
+These readings confirm that the panel can reliably generate sufficient voltage and current to power the Arduino Nano 33 BLE Sense and provide a measurable AC signal for gesture detection.
+
 Together, these innovations position the system as a step toward **interactive, energy-autonomous smart furniture**: surfaces that are at once **functional, aesthetic, and responsive**, with no external wiring or power supply required.
 
 ---
@@ -152,8 +161,6 @@ P = V × I is maximized.
 - If R<sub>L</sub> is too high → panel is voltage-limited (high voltage, low current).  
 - A properly tuned MPPT ensures the **reflected input impedance of the converter** matches the PV source impedance at MPP.  
 
-(Reference: Willoughby & Omotosho, *A Simple Resistive Load I–V Curve Tracer for Module Characterization*).  
-
 ---
 
 ### 4.3 Input Impedance of a Buck Converter
@@ -179,6 +186,7 @@ This system demonstrates a **high-voltage, energy-harvesting PV sensor** capable
 - Operating entirely off **harvested solar energy** with ultra-low-power circuitry.  
 - Leveraging theoretical insights from **Li-ion charge dynamics, PV load-line analysis, and buck converter input impedance** for robust design.  
 - Exploring a novel **semi-transparent coffee table application**, combining **gesture interactivity** with **self-powered autonomy** and future potential for **under-panel displays**.
+
 
  
 
