@@ -21,11 +21,11 @@ This project builds on that foundation but introduces several unique innovations
 Initial measurements with a multimeter under 660 lux mixed laboratory lighting (LED plus filtered daylight through a modern south-facing window) showed that the PV panel, connected to the LTC3638 converter, produced:
 
 $$
-V_{out} = 3.35 / /V
+V_{out} = 3.35 V
 $$
 
 $$
-I_{sc} = 3.89 / /mA
+I_{sc} = 3.89 mA
 $$
 
 These readings confirm that the panel can reliably generate sufficient voltage and current to power the Arduino Nano 33 BLE Sense and provide a measurable AC signal for gesture detection.
